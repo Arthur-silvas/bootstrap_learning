@@ -1,0 +1,14 @@
+{
+  "cadastros": [
+    {
+      "id": "a303",
+      "nome": "Arthur",
+      "email": "teste@gmail.com",
+      "entrada": "2025-02-25",
+      "saida": "2025-03-10",
+      "observacoes": "",
+      "adultos": "2",
+      "criancas": "1"
+    } 
+  ]
+}

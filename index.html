@@ -96,60 +96,121 @@
         </div>
 
         <div class="col-lg-8 col-12">
-            <form>
+            <form action="http://localhost:3000/cadastros" method="POST" id="formReserva">
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label>Nome</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
                     <div class="col-md-6">
                         <label>E-mail</label>
-                        <input type="email" class="form-control">
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label>Data de entrada</label>
-                        <input type="date" class="form-control">
+                        <input type="date" class="form-control" id="entrada" name="entrada" required maxlength="10" max="2027-01-01">
                     </div>
                     <div class="col-md-6">
                         <label>Data de saída</label>
-                        <input type="date" class="form-control">
+                        <input type="date" class="form-control" id="saida" name="saida" required maxlength="10" max="2027-01-01">
                     </div>
                 </div>
 
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <label>Observações</label>
-                        <textarea class="form-control" rows="4"></textarea>
+                        <textarea class="form-control" rows="4" id="observacoes"></textarea>
                     </div>
 
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-6">
                                 <label>Adultos</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" id="adultos" name="adultos">
                             </div>
                             <div class="col-6">
                                 <label>Crianças</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" id="criancas" name="criancas"> 
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-end">
-                    <button class="btn btn-primary px-5">Enviar</button>
+                    <button class="btn btn-primary px-5" type="submit" >Enviar</button>
                 </div>
-
             </form>
+            <div class="text-end my-1">
+                <a class="btn btn-primary" href="reservas.html" role="button">Tabela</a>
+            </div>
         </div>
-
     </div>
 </footer>
 
+<script src="jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script src="bootstrap-dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js.js"></script>
+<script>
+        $(document).ready(function () {
+
+    $("#formReserva").validate({
+
+        rules: {
+            nome: {
+                required: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            entrada: {
+                required: true
+            },
+            saida: {
+                required: true
+            },
+            adultos: {
+                required: true,
+                min: 1
+            },
+            criancas: {
+                min: 0
+            }
+        },
+
+        messages: {
+            nome: {
+                required: "O campo nome é obrigatório",
+                minlength: "O nome deve ter ao menos 3 caracteres"
+            },
+            email: {
+                required: "O campo e-mail é obrigatório",
+                email: "Informe um e-mail válido (ex: nome@email.com)"
+            },
+            entrada: {
+                required: "Informe a data de entrada"
+            },
+            saida: {
+                required: "Informe a data de saída"
+            },
+            adultos: {
+                required: "Informe o número de adultos",
+                min: "Deve haver pelo menos 1 adulto"
+            },
+            criancas: {
+                min: "O número de crianças não pode ser negativo"
+            }
+        },
+
+    });
+
+});
+</script>
 </body>
 </html>
